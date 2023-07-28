@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav.header-bg {
+  background-color: #F6F6F7;
+}
+
+p.red-ast {
+    color: #C90000;
+}
+
+div.black22 {
+    color: #222222;
+}
+
+div.grey {
+    color: #888888;
+}
