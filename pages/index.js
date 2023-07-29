@@ -59,21 +59,24 @@ function CartPreview({ className, labelText, itemDetails }) {
                         leaveTo="opacity-0 translate-y-1"
                     >
                         <Popover.Panel className="absolute left-1/2 z-50 mt-3 -translate-x-1/2 transform px-4">
-                        {itemDetails.map((item) =>
+                        {itemDetails.map((item, idx) =>
                             <a
-                            key={item.name}
+                            key={idx}
                             href="#"
-                            className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                            className="w-80 -m-3 flex items-center p-2 transition duration-150 ease-in-out bg-white hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                           >
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                              <item.pic aria-hidden="true" />
+                                <Image width="500" height="500" src={item.pic} alt="" className=" inset-0 w-full h-full object-cover" />
                             </div>
                             <div className="ml-4">
                               <p className="text-sm font-medium text-gray-900">
                                 {item.name}
                               </p>
+                              <p className="text-sm font-medium text-gray-900">
+                                Size: {item.size}
+                              </p>
                               <p className="text-sm text-gray-500">
-                                {item.price}
+                                 {`$ ${Number.parseFloat(item.price).toFixed(2)}`}
                               </p>
                             </div>
                           </a>
@@ -92,7 +95,6 @@ export default function Page({ product }) {
     const [cart, addToCart] = React.useState([]);
 
     function handleClick(size) {
-        console.log(size);
         setSize(size);
     }
 
@@ -105,42 +107,42 @@ export default function Page({ product }) {
     }
 
     return (
-        <div class="font-sans font">
-            <nav class="flex items-center justify-between flex-wrap header-bg p-6">
-                <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
+        <div className="font-sans font">
+            <nav className="flex items-center justify-between flex-wrap header-bg p-6">
+                <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
                     <div>
                         <CartPreview labelText="My Cart" itemDetails={cart} />
                     </div>
                 </div>
             </nav>
-            <div class="flex">
-                <div class="flex-none w-48 relative">
-                    <Image width="500" height="500" src="/classic-tee.jpg" alt="" class=" inset-0 w-full h-full object-cover" />
+            <div className="flex">
+                <div className="flex-none w-48 relative">
+                    <Image width="500" height="500" src="/classic-tee.jpg" alt="" className=" inset-0 w-full h-full object-cover" />
                 </div>
-                <form class="flex-auto p-6">
-                    <div class="flex flex-col">
-                        <h1 class="flex-auto text-2xl black22 border-slate-200 border-b">
+                <form className="flex-auto p-6">
+                    <div className="flex flex-col">
+                        <h1 className="flex-auto text-2xl black22 border-slate-200 border-b">
                             {product.title}
                         </h1>
-                        <h2 class="text-sm font-bold black22 border-b border-slate-200">
+                        <h2 className="text-sm font-bold black22 border-b border-slate-200">
                             {`$ ${Number.parseFloat(product.price).toFixed(2)}`}
                         </h2>
-                        <div class="w-full flex-none text-sm grey mt-2">
+                        <div className="w-full flex-none text-sm grey mt-2">
                             {product.description}
                         </div>
 
                     </div>
-                    <div class="flex">
-                        SIZE<p class="red-ast">*</p> <p>{selectedSize}</p>
+                    <div className="flex">
+                        SIZE<p className="red-ast">*</p> <p>{selectedSize}</p>
                     </div>
-                    <div class="flex items-baseline mt-4 mb-6 pb-6">
-                        <div class="space-x-2 flex text-sm">
+                    <div className="flex items-baseline mt-4 mb-6 pb-6">
+                        <div className="space-x-2 flex text-sm">
                             <SelectSize sizes={product.sizeOptions} handleOn={handleClick} />
                         </div>
                     </div>
-                    <div class="flex space-x-4 mb-6 text-sm font-medium">
-                        <div class="flex-auto flex space-x-4">
-                            <button class="h-10 px-6 font-semibold border border-slate-900 border-2 text-slate-900" type="button" onClick={submit}>
+                    <div className="flex space-x-4 mb-6 text-sm font-medium">
+                        <div className="flex-auto flex space-x-4">
+                            <button className="h-10 px-6 font-semibold border border-slate-900 border-2 text-slate-900" type="button" onClick={submit}>
                                 Add to Cart
                             </button>
                         </div>
